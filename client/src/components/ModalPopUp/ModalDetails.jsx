@@ -16,7 +16,8 @@ const ModalDetails = ({ setShowModal }) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+	    body: JSON.stringify(values)
         })
         console.log(res);
         setLoading(false);
@@ -53,8 +54,8 @@ const ModalDetails = ({ setShowModal }) => {
                     <label htmlFor="">First Name</label>
                     <input type="text" name='firstname'
                         required
-                        onSubmit={formik.handleChange}
-                        values={formik.values.firstname}
+                        onChange={formik.handleChange}
+                        value={formik.values.firstname}
                     />
                 </div>
 
@@ -62,8 +63,8 @@ const ModalDetails = ({ setShowModal }) => {
                     <label htmlFor="">Last Name</label>
                     <input type="text" name='lastname'
                         required
-                        onSubmit={formik.handleChange}
-                        values={formik.values.lastname}
+                        onChange={formik.handleChange}
+                        value={formik.values.lastname}
                     />
                 </div>
 
@@ -71,8 +72,8 @@ const ModalDetails = ({ setShowModal }) => {
                     <label htmlFor="">Image</label>
                     <input type="text" name='image'
                         required
-                        onSubmit={formik.handleChange}
-                        values={formik.values.image}
+                        onChange={formik.handleChange}
+                        value={formik.values.image}
                     />
                 </div>
 
@@ -80,8 +81,8 @@ const ModalDetails = ({ setShowModal }) => {
                     <label htmlFor="">Email Address</label>
                     <input type="email" name='email'
                         required
-                        onSubmit={formik.handleChange}
-                        values={formik.values.email}
+                        onChange={formik.handleChange}
+                        value={formik.values.email}
                     />
                 </div>
 
@@ -89,8 +90,8 @@ const ModalDetails = ({ setShowModal }) => {
                     <label htmlFor="">Phone</label>
                     <input type="text" name='phone'
                         required
-                        onSubmit={formik.handleChange}
-                        values={formik.values.phone}
+                        onChange={formik.handleChange}
+                        value={formik.values.phone}
                     />
                 </div>
 
@@ -98,17 +99,17 @@ const ModalDetails = ({ setShowModal }) => {
                     <label htmlFor="">Job Position</label>
                     <input type="text" name='job'
                         required
-                        onSubmit={formik.handleChange}
-                        values={formik.values.job}
+                        onChange={formik.handleChange}
+                        value={formik.values.job}
                     />
                 </div>
 
                 <div>
                     <label htmlFor="">Date Of Joining</label>
-                    <input type="text" name='dateofjoining'
+                    <input type="text" name='dateOfJoining'
                         required
-                        onSubmit={formik.handleChange}
-                        values={formik.values.dateofjoining}
+                        onChange={formik.handleChange}
+                        value={formik.values.dateOfJoining}
                     />
                 </div>
 
