@@ -1,7 +1,8 @@
 import React from 'react'
+
 import NavBar from './components/NavBar'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Dashboard from './pages/dashboard'
+import Dashboard from './pages/Dashboard'
 import Home from './pages/Home'
 
 
