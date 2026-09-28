@@ -15,29 +15,30 @@ pipeline {
 
         stage('Build Images') {
             steps {
-                sh '"C:\\Users\\dmurl\\AppData\\Local\\Programs\\DockerDesktop\\DockerCli.exe" --build -t ems-backend ./server'
-                sh '"C:\\Users\\dmurl\\AppData\\Local\\Programs\\DockerDesktop\\DockerCli.exe" --build -t ems-frontend ./client'
+                bat 'docker build -t ems-backend ./server'
+                bat 'docker build -t ems-frontend ./client'
             }
         }
 
         stage('Security Scan') {
             steps {
                 // Trivy container scans the images for critical CVEs
-                sh './scan.sh ems-backend'
-                sh './scan.sh ems-frontend'
+                // Prepend 'bash' so Windows cmd can execute the .sh script
+                bat 'bash ./scan.sh ems-backend'
+                bat 'bash ./scan.sh ems-frontend'
             }
         }
 
         stage('Push to Docker Hub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: "${CRED_ID}", usernameVariable: 'USER', passwordVariable: 'PASS')]) {
-                    sh 'echo $PASS | docker login -u $USER --password-stdin'
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                    bat 'echo %PASS% | docker login -u %USER% --password-stdin'
                     
-                    sh 'docker tag ems-backend ${DOCKER_USER}/ems-backend:latest'
-                    sh 'docker tag ems-frontend ${DOCKER_USER}/ems-frontend:latest'
+                    bat 'docker tag ems-backend %DOCKER_USER%/ems-backend:latest'
+                    bat 'docker tag ems-frontend %DOCKER_USER%/ems-frontend:latest'
                     
-                    sh 'docker push ${DOCKER_USER}/ems-backend:latest'
-                    sh 'docker push ${DOCKER_USER}/ems-frontend:latest'
+                    bat 'docker push %DOCKER_USER%/ems-backend:latest'
+                    bat 'docker push %DOCKER_USER%/ems-frontend:latest'
                 }
             }
         }
