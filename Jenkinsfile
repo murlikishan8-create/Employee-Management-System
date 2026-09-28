@@ -15,8 +15,8 @@ pipeline {
 
         stage('Build Images') {
             steps {
-                sh 'docker build -t ems-backend ./server'
-                sh 'docker build -t ems-frontend ./client'
+                sh '"C:\\Users\\dmurl\\AppData\\Local\\Programs\\DockerDesktop\\DockerCli.exe" --build -t ems-backend ./server'
+                sh '"C:\\Users\\dmurl\\AppData\\Local\\Programs\\DockerDesktop\\DockerCli.exe" --build -t ems-frontend ./client'
             }
         }
 
