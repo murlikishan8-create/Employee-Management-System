@@ -4,7 +4,7 @@ pipeline {
     environment {
         CRED_ID = 'dockerhub-credentials'
         DOCKER_USER = 'harryp0tter'
-        environment {
+
         PATH = "C:\\Users\\dmurl\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin;${env.PATH}"
     }
 
@@ -17,6 +17,7 @@ pipeline {
 
         stage('Build Images') {
             steps {
+                bat 'docker --version'
                 bat 'docker build -t ems-backend ./server'
                 bat 'docker build -t ems-frontend ./client'
             }
