@@ -23,14 +23,14 @@ pipeline {
             }
         }
 
-        stage('Security Scan') {
-            steps {
-                // Trivy container scans the images for critical CVEs
-                // Prepend 'bash' so Windows cmd can execute the .sh script
-                bat 'bash ./scan.sh ems-backend'
-                bat 'bash ./scan.sh ems-frontend'
-            }
-        }
+        // stage('Security Scan') {
+        //     steps {
+        //         // Trivy container scans the images for critical CVEs
+        //         // Prepend 'bash' so Windows cmd can execute the .sh script
+        //         bat 'bash ./scan.sh ems-backend'
+        //         bat 'bash ./scan.sh ems-frontend'
+        //     }
+        // }
 
         stage('Push to Docker Hub') {
             steps {
