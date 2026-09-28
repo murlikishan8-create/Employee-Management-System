@@ -4,6 +4,8 @@ pipeline {
     environment {
         CRED_ID = 'dockerhub-credentials'
         DOCKER_USER = 'harryp0tter'
+        environment {
+        PATH = "C:\\Users\\dmurl\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin;${env.PATH}"
     }
 
     stages {
