@@ -3,7 +3,6 @@ pipeline {
     
     environment {
         CRED_ID = 'dockerhub-credentials'
-        DOCKER_USER = 'harryp0tter'
 
         PATH = "C:\\Users\\dmurl\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin;${env.PATH}"
     }
@@ -34,16 +33,26 @@ pipeline {
 
         stage('Push to Docker Hub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: env.CRED_ID, usernameVariable: 'USER', passwordVariable: 'PASS')]) {
-                    bat 'echo %PASS% | docker login -u %USER% --password-stdin'
-                    
+                withCredentials([usernamePassword(
+                    credentialsId: env.CRED_ID,
+                    usernameVariable: 'DOCKER_USER',
+                    passwordVariable: 'DOCKER_PASS'
+                )]) {
+                    bat 'powershell -NoProfile -Command "$env:DOCKER_PASS | docker login -u $env:DOCKER_USER --password-stdin"'
+
                     bat 'docker tag ems-backend %DOCKER_USER%/ems-backend:latest'
                     bat 'docker tag ems-frontend %DOCKER_USER%/ems-frontend:latest'
-                    
+
                     bat 'docker push %DOCKER_USER%/ems-backend:latest'
                     bat 'docker push %DOCKER_USER%/ems-frontend:latest'
                 }
             }
+        }
+    }
+
+    post {
+        always {
+            bat 'docker logout'
         }
     }
 }
