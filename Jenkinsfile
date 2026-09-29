@@ -34,7 +34,7 @@ pipeline {
 
         stage('Push to Docker Hub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                withCredentials([usernamePassword(credentialsId: env.CRED_ID, usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                     bat 'echo %PASS% | docker login -u %USER% --password-stdin'
                     
                     bat 'docker tag ems-backend %DOCKER_USER%/ems-backend:latest'
