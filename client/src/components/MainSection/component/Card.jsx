@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { BsThreeDotsVertical } from "react-icons/bs";
 
 
-const baseURL = 'http://localhost:8000';
+const baseURL = '/api';
 
 
 const Card = ({ handleEdit, handleReRender, empData }) => {

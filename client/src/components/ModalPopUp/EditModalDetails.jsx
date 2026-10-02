@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useFormik } from 'formik'
 
 
-const baseURL = 'http://localhost:8000';
+const baseURL = '/api';
 
 
 const EditModalDetails = ({ EmpById, setEditModal }) => {

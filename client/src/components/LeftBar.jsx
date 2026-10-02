@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 
-const baseURL = 'http://localhost:8000';
+const baseURL = '/api';
 
 
 const LeftBar = ({ employeeId }) => {

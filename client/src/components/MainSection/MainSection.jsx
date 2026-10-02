@@ -6,7 +6,7 @@ import { IoMdAdd } from 'react-icons/io'
 import React, { useState, useEffect } from 'react'
 
 
-const baseURL = 'http://localhost:8000';
+const baseURL = '/api';
 
 
 const MainSection = ({ setEmployeeId }) => {
