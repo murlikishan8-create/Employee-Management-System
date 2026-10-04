@@ -1,13 +1,7 @@
 pipeline {
     agent any
 
-    parameters {
-	string(
-	    name: 'EC2_HOST',
-	    defaultValue: '3.109.186.35',
-	    description: 'EC2 public IP'
-	)
-    } 
+     
     environment {
         CRED_ID = 'dockerhub-credentials'
 
@@ -55,19 +49,6 @@ pipeline {
                 }
             }
         } 
-
-        stage('Deploy to EC2') {
-            steps { 
-                withCredentials(bindings: [sshUserPrivateKey(
-                    credentialsId: 'ec2-ssh-key',
-                    keyFileVariable: 'KEY_FILE',
-                    usernameVariable: 'SSH_USER'
-                )]) {
-		    bat 'icacls "%KEY_FILE%" /inheritance:r /grant:r "%USERNAME%:R"'
-		    bat 'ssh -i "%KEY_FILE%" -o StrictHostKeyChecking=accept-new %SSH_USER%@%EC2_HOST% "whoami && hostname"'}
-		}
-	    }
-        }
     
 
     post {
