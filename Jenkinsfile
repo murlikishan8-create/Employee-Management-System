@@ -48,9 +48,9 @@ pipeline {
                     bat 'docker push %DOCKER_USER%/ems-frontend:latest'
                 }
             }
-        } 
+        }
+    }
     
-
     post {
         always {
             bat 'docker logout'
