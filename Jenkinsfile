@@ -63,6 +63,7 @@ pipeline {
                     keyFileVariable: 'KEY_FILE',
                     usernameVariable: 'SSH_USER'
                 )]) {
+		    bat 'icacls "%KEY_FILE%" /inheritance:r /grant:r "%USERNAME%:R"'
 		    bat 'ssh -i "%KEY_FILE%" -o StrictHostKeyChecking=accept-new %SSH_USER%@%EC2_HOST% "whoami && hostname"'}
 		}
 	    }
