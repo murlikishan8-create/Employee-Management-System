@@ -63,10 +63,11 @@ pipeline {
                     keyFileVariable: 'KEY_FILE',
                     usernameVariable: 'SSH_USER'
                 )]) {
-		    bat 'ssh -i "%KEY_FILE%" -o StrictHostKeyChecking=accept-new %SSH_USER%@%EC2_HOST% "whoami && hostname"'
+		    bat 'ssh -i "%KEY_FILE%" -o StrictHostKeyChecking=accept-new %SSH_USER%@%EC2_HOST% "whoami && hostname"'}
+		}
+	    }
         }
-    }
-}
+    
 
     post {
         always {
